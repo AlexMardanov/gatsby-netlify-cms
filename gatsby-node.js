@@ -1,7 +1,20 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/node-apis/
- */
+const path = require('path');
+const CompressionPlugin = require('compression-webpack-plugin');
+const BrotliPlugin = require('brotli-webpack-plugin');
 
-// You can delete this file if you're not using it
+const productionPlugin = [
+  new CompressionPlugin({ algorithm: 'gzip' }),
+  new BrotliPlugin(),
+];
+
+exports.onCreateWebpackConfig = ({ stage, actions }) => {
+  actions.setWebpackConfig({
+    module: {
+      rules: [],
+    },
+    plugins: stage !== 'develop' ? productionPlugin : [],
+    resolve: {
+      modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+    },
+  });
+};
