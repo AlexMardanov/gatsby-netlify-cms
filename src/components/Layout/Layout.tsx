@@ -3,7 +3,9 @@ import * as React from 'react';
 import { graphql, StaticQuery } from 'gatsby';
 import styled from '@emotion/styled';
 
-interface ILayout {
+import { Image } from '../Image';
+
+interface ILayoutProps {
   children: React.ReactNode;
 }
 
@@ -22,11 +24,12 @@ const Container = styled.div`
   max-width: 800px;
 `;
 
-export const Layout = ({ children }: ILayout) => (
+export const Layout = ({ children }: ILayoutProps) => (
   <StaticQuery
     query={layoutQuery}
     render={() => (
       <Container>
+        <Image filename="poster.jpg" />
         <main>{children}</main>
         <footer>
           © {new Date().getFullYear()}, Built with
