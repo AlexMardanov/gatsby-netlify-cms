@@ -1,11 +1,11 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { graphql, StaticQuery } from 'gatsby';
-import Img from 'gatsby-image';
+import { graphql, StaticQuery } from 'gatsby'
+import Img from 'gatsby-image'
 
 interface IImageProps {
-  filename: string;
-  alt?: string;
+  filename: string
+  alt?: string
 }
 
 const IMAGE_QUERY = graphql`
@@ -24,22 +24,22 @@ const IMAGE_QUERY = graphql`
       }
     }
   }
-`;
+`
 
 export const Image = (props: IImageProps) => (
   <StaticQuery
     query={IMAGE_QUERY}
     render={data => {
       const image = data.images.edges.find((n: any) => {
-        return n.node.relativePath.includes(props.filename);
-      });
+        return n.node.relativePath.includes(props.filename)
+      })
 
       if (!image) {
-        return null;
+        return null
       }
 
-      const imageSizes = image.node.childImageSharp.sizes;
-      return <Img alt={props.alt} sizes={imageSizes} />;
+      const imageSizes = image.node.childImageSharp.sizes
+      return <Img alt={props.alt} sizes={imageSizes} />
     }}
   />
-);
+)

@@ -1,12 +1,12 @@
-import * as React from 'react';
-import { graphql, useStaticQuery } from 'gatsby';
-import Helmet from 'react-helmet';
+import * as React from 'react'
+import { graphql, useStaticQuery } from 'gatsby'
+import Helmet from 'react-helmet'
 
 interface ISEO {
-  description: string;
-  title: string;
-  lang: string;
-  meta: [];
+  description: string
+  title: string
+  lang: string
+  meta: []
 }
 
 export function SEO({ description, title, lang, meta }: ISEO) {
@@ -22,9 +22,9 @@ export function SEO({ description, title, lang, meta }: ISEO) {
         }
       }
     `
-  );
+  )
 
-  const metaDescription = description || site.siteMetadata.description;
+  const metaDescription = description || site.siteMetadata.description
 
   return (
     <Helmet
@@ -68,11 +68,11 @@ export function SEO({ description, title, lang, meta }: ISEO) {
         },
       ].concat(meta)}
     />
-  );
+  )
 }
 
 SEO.defaultProps = {
   lang: `en`,
   meta: [],
   description: ``,
-};
+}
